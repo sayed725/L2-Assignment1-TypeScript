@@ -8,7 +8,7 @@ const formatValue = (value: ValueType): ValueType => {
   } else if (typeof value === "boolean") {
     return !value;
   }
-  throw new Error("Invalid input type");
+  throw new Error("Value must be string, number, or boolean");
 };
 
 
@@ -20,6 +20,23 @@ const getLength = (value: ValueType2): number => {
   } else if (Array.isArray(value)) {
     return value.length;
   }
-  throw new Error("Invalid input type");
+  throw new Error("Value must be string or array");
 };
+
+
+
+class Person {
+    name: string;
+    age: number;
+
+    constructor(name: string, age: number) {
+        this.name = name;
+        this.age = age;  
+    }
+    getDetails() : string {
+     return `'Name: ${this.name}, Age: ${this.age}'`;
+     }
+
+}
+
 
