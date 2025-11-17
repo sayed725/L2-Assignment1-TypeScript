@@ -11,7 +11,6 @@ const formatValue = (value: ValueType): ValueType => {
   throw new Error("Value must be string, number, or boolean");
 };
 
-
 type ValueType2 = string | any[];
 
 const getLength = (value: ValueType2): number => {
@@ -23,20 +22,27 @@ const getLength = (value: ValueType2): number => {
   throw new Error("Value must be string or array");
 };
 
-
-
 class Person {
-    name: string;
-    age: number;
+  name: string;
+  age: number;
 
-    constructor(name: string, age: number) {
-        this.name = name;
-        this.age = age;  
-    }
-    getDetails() : string {
-     return `'Name: ${this.name}, Age: ${this.age}'`;
-     }
-
+  constructor(name: string, age: number) {
+    this.name = name;
+    this.age = age;
+  }
+  getDetails(): string {
+    return `'Name: ${this.name}, Age: ${this.age}'`;
+  }
 }
 
+
+
+type Item = {
+  title: string;
+  rating: number;
+};
+
+const filterByRating = (items: Item[]): Item[] => {
+  return items.filter((item) => item.rating >= 4);
+};
 
