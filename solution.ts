@@ -11,6 +11,8 @@ const formatValue = (value: ValueType): ValueType => {
   throw new Error("Value must be string, number, or boolean");
 };
 
+
+
 type ValueType2 = string | any[];
 
 const getLength = (value: ValueType2): number => {
@@ -21,6 +23,8 @@ const getLength = (value: ValueType2): number => {
   }
   throw new Error("Value must be string or array");
 };
+
+
 
 class Person {
   name: string;
@@ -45,4 +49,21 @@ type Item = {
 const filterByRating = (items: Item[]): Item[] => {
   return items.filter((item) => item.rating >= 4);
 };
+
+
+
+
+type User = {
+  id: number;
+  name: string;
+  email: string;
+  isActive: boolean;
+};
+
+const filterActiveUsers = (users: User[]): User[] => {
+  return users.filter((user: User) => user.isActive === true);
+};
+
+
+
 
