@@ -11,8 +11,6 @@ const formatValue = (value: ValueType): ValueType => {
   throw new Error("Value must be string, number, or boolean");
 };
 
-
-
 type ValueType2 = string | any[];
 
 const getLength = (value: ValueType2): number => {
@@ -23,8 +21,6 @@ const getLength = (value: ValueType2): number => {
   }
   throw new Error("Value must be string or array");
 };
-
-
 
 class Person {
   name: string;
@@ -39,8 +35,6 @@ class Person {
   }
 }
 
-
-
 type Item = {
   title: string;
   rating: number;
@@ -49,9 +43,6 @@ type Item = {
 const filterByRating = (items: Item[]): Item[] => {
   return items.filter((item) => item.rating >= 4);
 };
-
-
-
 
 type User = {
   id: number;
@@ -63,6 +54,50 @@ type User = {
 const filterActiveUsers = (users: User[]): User[] => {
   return users.filter((user: User) => user.isActive === true);
 };
+
+interface Book {
+  title: string;
+  author: string;
+  publishedYear: number;
+  isAvailable: boolean;
+}
+
+const printBookDetails = (book: Book): void => {
+  console.log(
+    `Title: ${book.title}, Author: ${book.author}, Published: ${
+      book.publishedYear
+    }, Available: ${book.isAvailable ? "Yes" : "No"}`
+  );
+};
+
+
+
+
+interface Product {
+  name: string;
+  price: number;
+  quantity: number;
+  discount?: number;
+}
+
+const calculateTotalPrice = (products: Product[]): number => {
+  if (products.length === 0) {
+    return 0;
+  } else {
+    return products.reduce((total, product) => {
+      let price = product.price * product.quantity;
+
+      if (product.discount) {
+        price = price - (price * product.discount) / 100;
+      }
+
+      return total + price;
+    }, 0);
+  }
+};
+
+
+
 
 
 
