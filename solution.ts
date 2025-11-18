@@ -11,7 +11,10 @@ const formatValue = (value: ValueType): ValueType => {
   throw new Error("Value must be string, number, or boolean");
 };
 
-const getLength = <T extends string | Array<U>, U>(value: T): number => {
+
+type LengthType<T> = string | Array<T>;
+
+const getLength = <T>(value: LengthType<T>): number => {
   if (typeof value === "string") {
     return value.length;
   } else if (Array.isArray(value)) {
@@ -19,6 +22,8 @@ const getLength = <T extends string | Array<U>, U>(value: T): number => {
   }
   throw new Error("Value must be string or array");
 };
+
+
 
 class Person {
   name: string;
