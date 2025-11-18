@@ -78,6 +78,8 @@ type ExtendedType = BaseType & {
 সর্বোপরি, interface বা type ব্যবহার করবেন কিনা—তা নির্ভর করে আপনার কোডবেসের প্রয়োজন এবং ব্যক্তিগত পছন্দের ওপর। TypeScript-এ দুটোই খুব শক্তিশালী টুল, এবং একই ধরনের কাজ দুটো দিয়েই করা সম্ভব।
 
 
+
+
 ## 2. What is the use of the keyof keyword in TypeScript? Provide an example.
 
 ### Answer:
@@ -109,9 +111,12 @@ key = "age";  // ঠিক আছে
 এটি type-safe কোড তৈরি করতে সাহায্য করে এবং ভুল key access থেকে রক্ষা করে।
 
 
-## 2. Explain the difference between any, unknown, and never types in TypeScript.
+
+
+## 3. Explain the difference between any, unknown, and never types in TypeScript.
 
 ### Answer:
+
 TypeScript-এ any, unknown, এবং never হলো non-primitive টাইপ। এরা  প্রিমিটিভ টাইপের মতো সরাসরি value ধারণ করে না 
 
 1️⃣ any
@@ -166,6 +171,64 @@ function throwError(message: string): never {
 function infiniteLoop(): never {
   while(true) {}
 }
+```
+
+
+
+## 4. Explain the difference between any, unknown, and never types in TypeScript.
+
+### Answer:
+
+TypeScript-এ Enum হলো একটি feature যা নাম দিয়ে constant-এর group তৈরি করতে সাহায্য করে।
+Enums ব্যবহার করলে কোড readable, maintainable এবং type-safe হয়।
+
+
+1️⃣ String Enum এর উদাহরণ  (Role) : 
+
+```bash
+
+//আমরা Role নামের Enum তৈরি করেছি।
+
+enum Role {
+  Admin = "ADMIN",
+  User = "USER",
+  Moderator = "MOD"
+}
+
+//প্রতিটি নামের সাথে string value assign করা হয়েছে।
+
+let myRole: Role;
+
+//এখন myRole কেবল Enum-এর value নিতে পারবে।
+
+myRole = Role.Admin;
+console.log(myRole); // Enum-এর value "ADMIN"
+
+myRole = Role.User;
+console.log(myRole); // Enum-এর value "USER"
+
+myRole = Role.Moderator;
+console.log(myRole); // Enum-এর value "MOD"
+
+```
+
+2️⃣ Numeric Enum এর উদাহরণ  (Role) : 
+
+```bash
+
+//এখানে Enum value সংখ্যা হিসেবে assign করা হয়েছে।
+
+enum Role  {
+  Admin = 1,
+  User,
+  Moderator
+}
+
+// প্রথম value 1 দেওয়া হয়েছে, এরপর স্বয়ংক্রিয়ভাবে 2, 3 হয়ে যায়।
+
+let myRole: Role = Role.User;
+console.log(myRole); // স্বয়ংক্রিয়ভাবে 2 হবে 
+
 ```
 
 
