@@ -131,6 +131,9 @@ const calculateTotalPrice = (products: Product[]): number => {
       let price = product.price * product.quantity;
 
       if (product.discount) {
+        if (product.discount < 0 || product.discount > 100) {
+          throw new Error("Discount must be between 0 and 100");
+        }
         price = price - (price * product.discount) / 100;
       }
 
@@ -138,5 +141,6 @@ const calculateTotalPrice = (products: Product[]): number => {
     }, 0);
   }
 };
+
 
 
