@@ -11,9 +11,7 @@ const formatValue = (value: ValueType): ValueType => {
   throw new Error("Value must be string, number, or boolean");
 };
 
-type ValueType2 = string | any[];
-
-const getLength = (value: ValueType2): number => {
+const getLength = <T extends string | Array<U>, U>(value: T): number => {
   if (typeof value === "string") {
     return value.length;
   } else if (Array.isArray(value)) {
@@ -70,9 +68,6 @@ const printBookDetails = (book: Book): void => {
   );
 };
 
-
-
-
 interface Product {
   name: string;
   price: number;
@@ -95,10 +90,3 @@ const calculateTotalPrice = (products: Product[]): number => {
     }, 0);
   }
 };
-
-
-
-
-
-
-
