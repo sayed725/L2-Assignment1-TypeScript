@@ -39,8 +39,15 @@ type Item = {
 };
 
 const filterByRating = (items: Item[]): Item[] => {
-  return items.filter((item) => item.rating >= 4);
+  return items.filter((item) => {
+    if (item.rating < 0 || item.rating > 5) {
+      throw new Error("Rating must be between 0 and 5");
+    } else {
+      return item.rating >= 4;
+    }
+  });
 };
+
 
 type User = {
   id: number;
@@ -68,6 +75,47 @@ const printBookDetails = (book: Book): void => {
   );
 };
 
+
+const getUniqueValues = <T>(array1: T[], array2: T[]): T[] => {
+  const result: T[] = [];
+
+  for (let i = 0; i < array1.length; i++) {
+    const value = array1[i];
+
+    let exists = false;
+
+    for (let j = 0; j < result.length; j++) {
+      if (result[j] === value) {
+        exists = true;
+        break;
+      }
+    }
+
+    if (!exists) {
+      result[result.length] = value;
+    }
+  }
+
+  for (let i = 0; i < array2.length; i++) {
+    const value = array2[i];
+
+    let exists = false;
+
+    for (let j = 0; j < result.length; j++) {
+      if (result[j] === value) {
+        exists = true;
+        break;
+      }
+    }
+
+    if (!exists) {
+      result[result.length] = value;
+    }
+  }
+
+  return result;
+};
+
 interface Product {
   name: string;
   price: number;
@@ -90,3 +138,10 @@ const calculateTotalPrice = (products: Product[]): number => {
     }, 0);
   }
 };
+
+
+
+
+const array1 = [1, 2, 3, 4, 5];
+const array2 = [3, 4, 5, 6, 7];
+console.log(getUniqueValues(array1, array2));
