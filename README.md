@@ -78,6 +78,98 @@ type ExtendedType = BaseType & {
 সর্বোপরি, interface বা type ব্যবহার করবেন কিনা—তা নির্ভর করে আপনার কোডবেসের প্রয়োজন এবং ব্যক্তিগত পছন্দের ওপর। TypeScript-এ দুটোই খুব শক্তিশালী টুল, এবং একই ধরনের কাজ দুটো দিয়েই করা সম্ভব।
 
 
+## 2. What is the use of the keyof keyword in TypeScript? Provide an example.
+
+### Answer:
+
+keyof হলো TypeScript-এর একটি utility যা কোনো object type-এর সব key-এর union type তৈরি করে।
+এটি মূলত safer এবং type-safe কোড লেখার জন্য ব্যবহৃত হয়, যাতে ভুল key ব্যবহার না হয়।
+
+
+```bash
+interface Person {
+  name: string;
+  age: number;
+}
+
+// keyof ব্যবহার করে সব key-এর union type তৈরি করা
+type PersonKeys = keyof Person; 
+// PersonKeys = "name" | "age"
+
+// ব্যবহার
+let key: PersonKeys;
+
+key = "name"; // ঠিক আছে
+key = "age";  // ঠিক আছে
+// key = "email"; ❌ error, কারণ Person-এর মধ্যে "email" নেই
+
+```
+
+সর্বোপরি, keyof দিয়ে আমরা object type-এর সব key union type হিসেবে পেতে পারি।
+এটি type-safe কোড তৈরি করতে সাহায্য করে এবং ভুল key access থেকে রক্ষা করে।
+
+
+## 2. Explain the difference between any, unknown, and never types in TypeScript.
+
+### Answer:
+TypeScript-এ any, unknown, এবং never হলো non-primitive টাইপ। এরা  প্রিমিটিভ টাইপের মতো সরাসরি value ধারণ করে না 
+
+1️⃣ any
+
+- any টাইপ হলো সবকিছু হতে পারে এমন টাইপ।
+
+- এটি type-checking এ কোনো বাধা দেয় না।
+
+- তবে খুব বেশি ব্যবহার করলে TypeScript-এর type safety হারায়। 
+
+```bash
+let value: any;
+
+value = 5;      // Number type ঠিক আছে
+value = "Hello"; // String type ঠিক আছে
+value = true;    // boolean ঠিক আছে
+
+```
+
+2️⃣ unknown
+
+- unknown টাইপও যেকোনো value রাখতে পারে, কিন্তু অ্যাক্সেস করার আগে type চেক করতে হবে।
+
+- এটি any এর চেয়ে safer।
+
+
+```bash
+let value: unknown;
+
+value = 5;       
+value = "Hello";
+
+// let num: number = value; ❌ error
+if (typeof value === "number") {
+  let num: number = value; // type চেক করার পরে  ঠিক আছে
+}
+
+```
+
+3️⃣ never
+
+- never টাইপ এমন value বোঝায় যা কখনো উপস্থিত হবে না।
+
+- সাধারণত ব্যবহার হয় error throw করা বা অপ্রাপ্ত function return এর জন্য।
+
+
+```bash
+function throwError(message: string): never {
+  throw new Error(message);
+}
+
+function infiniteLoop(): never {
+  while(true) {}
+}
+```
+
+
+
 
 
     
